@@ -43,7 +43,7 @@
 
       <div class="gameplay__slider">
         <Swiper
-          :slides-per-view="3"
+          :slides-per-view="isMobile ? 1 : 3"
           :centered-slides="true"
           :loop="true"
           :lazy="true"
@@ -172,6 +172,14 @@ const prevSlide = () => {
 const nextSlide = () => {
   swiperRef.value?.slideNext(300);
 };
+
+const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
+
+const isMobile = computed(() =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    userAgent
+  )
+);
 </script>
 
 <style>
@@ -185,20 +193,23 @@ html {
   font-family: "Bungee", Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 10px;
-  background: radial-gradient(circle at 30% 30%, #2c003e, #0d0d25);
+  background-color: #161a2b;
   color: #fff;
 }
 .__nuxt,
 html,
 body {
   overflow-x: hidden;
-}
-
-.background {
   background-image: url(./assets/background.webp);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 50rem;
+  background-position: center 1000px;
+}
+
+.background {
+  position: relative;
+  max-width: 1920px;
+  margin: auto;
 }
 
 /* >>> START DESCRIPT */
@@ -206,9 +217,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 30rem;
-  height: 15rem;
-  margin: 4rem;
+  width: 300px;
+  height: 150px;
+  margin: 40px;
   background-image: url(./assets/logo.webp);
   background-position: center;
   background-repeat: no-repeat;
@@ -217,29 +228,26 @@ body {
 
 .cover {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   flex-direction: column;
   background-image: url(./assets/cover.webp);
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  height: 100rem;
+  height: 1000px;
 }
-@media screen and (max-width: 900px) {
-  .cover {
-    margin-bottom: 10rem;
-  }
-}
-
 .title {
   align-self: center;
-  width: 80vw;
-  height: 12rem;
+  width: 100%;
+  height: 140px;
+  margin-bottom: 40px;
+  margin-top: 500px;
   background-image: url(./assets/title.webp);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-top: 66rem;
-  margin-bottom: 4rem;
 }
 
 .stores {
@@ -247,28 +255,19 @@ body {
   width: max-content;
   align-self: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 1rem 2rem;
+  gap: 40px;
+  padding: 10px 20px;
 }
 
 .store {
-  box-shadow: 0px 0px 10px #4600ac;
-  width: calc(3rem * 8);
-  height: calc(1rem * 8);
+  width: calc(30px * 8);
+  height: calc(10px * 8);
   cursor: pointer;
   text-decoration: none;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
-@media screen and (max-width: 900px) {
-  .store {
-    width: calc(3rem * 16);
-    height: calc(1rem * 16);
-    border-radius: 4px;
-  }
-}
-
 .store_google {
   background-image: url(./assets/google.svg);
 }
@@ -286,34 +285,22 @@ body {
 .gift {
   position: relative;
   align-self: center;
-  width: 100vw;
-  height: 40rem;
+  height: 400px;
   background-image: url(./assets/gift.webp);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-bottom: 4rem;
-}
-@media screen and (max-width: 900px) {
-  .gift {
-    height: 50rem;
-  }
+  margin-bottom: 40px;
 }
 
 .promocode {
   position: absolute;
-  top: 11.5rem;
+  top: 110px;
   left: 0;
   right: 0;
   margin: auto;
   text-align: center;
-  font-size: 5rem;
-}
-@media screen and (max-width: 900px) {
-  .promocode {
-    font-size: 6rem;
-    top: 14rem;
-  }
+  font-size: 50px;
 }
 
 .promocode-title {
@@ -335,42 +322,36 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  font-size: 5.2rem;
+  font-size: 52px;
   color: #4600ac;
   font-weight: 700;
   background: #fff;
-  padding: 1rem 8rem;
-  border-radius: 3rem;
-  box-shadow: 0px 0px 2rem #000;
+  padding: 10px 80px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px #000;
 }
 /* <<< END GIFT */
 
 /* >>> START ABOUT */
 .about {
   display: flex;
-  align-items: center;
   justify-content: center;
   background-image: url(./assets/about.webp);
+  height: max-content;
+  height: 790px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
-  width: 100vw;
-  height: 64rem;
-  padding: 0 38rem;
 }
 .about__text {
   text-align: center;
-  font-size: 3rem;
-  line-height: 3.5rem;
+  font-size: 30px;
+  margin-top: 13%;
+  line-height: 35px;
   color: #4c2e6c;
   font-weight: 400;
   transform: rotate(-3deg);
-}
-@media screen and (max-width: 900px) {
-  .about__text {
-    font-size: 4rem;
-    line-height: 4rem;
-  }
+  width: 50%;
 }
 /* <<< END ABOUT */
 
@@ -382,12 +363,11 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 100vw;
-  height: 33rem;
+  height: 330px;
 }
 .gameplay__slider {
   position: relative;
-  width: 90vw;
+  width: 90%;
   margin: auto;
 }
 .gameplay__screenshot {
@@ -395,92 +375,96 @@ body {
   height: fit-content;
 }
 
-.gameplay .swiper-slide {
-  transition: all 0.3s;
-  opacity: 0.7;
-  padding-top: 36rem !important;
-  padding-bottom: 36rem !important;
-}
-
-.gameplay .swiper-slide-active {
-  transform: scale(2);
-  opacity: 1;
-  z-index: 1;
-}
-
 .gameplay .swiper-prev-button,
 .gameplay .swiper-next-button {
   position: absolute;
-  top: calc(50% - 13rem);
-  width: 20rem;
+  top: calc(50% - 130px);
+  width: 200px;
   background-size: contain;
-  height: 20rem;
+  height: 200px;
   z-index: 1;
   cursor: pointer;
   transition: all 0.2s;
 }
-.gameplay .swiper-prev-button:hover,
-.gameplay .swiper-next-button:hover {
-  transform: scale(1.1);
-  transition: all 0.2s;
-}
 
 .gameplay .swiper-prev-button {
-  left: -5rem;
+  left: -50px;
   background-image: url(./assets/arrow-left.png);
 }
 .gameplay .swiper-next-button {
-  right: -5rem;
+  right: -50px;
   background-image: url(./assets/arrow-right.png);
 }
 
-.slider-border-bottom-left {
-  position: absolute;
-  bottom: 7rem;
-  left: -5rem;
-  background-size: contain;
-  width: 50rem;
-  z-index: 2;
-  height: 50rem;
-  background-repeat: no-repeat;
-  background-image: url(./assets/slider-border-bottom-left.webp);
+@media screen and (min-width: 900px) {
+  .gameplay .swiper-slide {
+    transition: all 0.3s;
+    opacity: 0.7;
+    padding-top: 460px !important;
+    padding-bottom: 460px !important;
+  }
+
+  .gameplay .swiper-slide-active {
+    transform: scale(2);
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .gameplay .swiper-prev-button:hover,
+  .gameplay .swiper-next-button:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
+
+  .slider-border-bottom-left {
+    position: absolute;
+    bottom: -50px;
+    left: -0px;
+    background-size: contain;
+    width: 500px;
+    z-index: 2;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-image: url(./assets/slider-border-bottom-left.webp);
+  }
+  .slider-border-top-right {
+    position: absolute;
+    top: 120px;
+    right: -200px;
+    background-size: contain;
+    width: 400px;
+    z-index: 0;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-image: url(./assets/slider-border-top-right.webp);
+  }
 }
-.slider-border-top-right {
-  position: absolute;
-  top: 0.8rem;
-  right: -20rem;
-  background-size: contain;
-  width: 40rem;
-  z-index: 0;
-  height: 40rem;
-  background-repeat: no-repeat;
-  background-image: url(./assets/slider-border-top-right.webp);
-}
+
 /* <<< END GAMEPLAY */
 
 /* >>> START EVOLVE HERO */
 .heroes {
-  margin-top: 10rem;
+  margin-top: 100px;
 }
 .heroes__heading {
   background-image: url(./assets/heroes-title.webp);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 100vw;
-  height: 33rem;
+  width: 100%;
+  height: 330px;
 }
 .heroes__all {
-  margin-top: -10rem;
+  margin-top: -180px;
   background-image: url(./assets/heroes-all.webp);
-  background-size: 110%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 67rem;
-  width: 100vw;
+  height: 850px;
+  width: 100%;
 }
 .heroes__text {
-  margin-top: -18rem;
+  margin-top: -230px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -488,12 +472,12 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 100vw;
-  height: 54rem;
+  width: 100%;
+  height: 680px;
   text-align: center;
-  font-size: 4rem;
-  padding: 0 20rem;
-  padding-right: 40rem;
+  font-size: 40px;
+  padding: 0 200px;
+  padding-right: 400px;
   color: #4b2f6c;
 }
 .heroes__text span {
@@ -504,14 +488,14 @@ body {
 .end-stores {
   display: flex;
   justify-content: center;
-  padding: 10rem 0;
+  padding: 100px 0;
 }
 
 .footer {
-  padding: 10rem;
+  padding: 100px;
   text-align: center;
-  line-height: 6rem;
-  font-size: 3rem;
+  line-height: 60px;
+  font-size: 30px;
   background-image: url(./assets/footer.webp);
   background-position: center;
   background-size: cover;
@@ -523,5 +507,144 @@ body {
   color: inherit;
   border-bottom: 1px dashed orange;
   color: orange;
+}
+
+@media screen and (max-width: 900px) {
+  .logo {
+    width: 100px;
+    height: 80px;
+    top: 10px;
+    left: 10px;
+    right: 0;
+    margin: 0;
+  }
+
+  .cover {
+    width: 100%;
+    height: 100vh;
+    max-height: 400px;
+  }
+
+  .title {
+    height: 80px;
+    width: 90%;
+    margin: 0;
+    margin-top: 200px;
+  }
+
+  .stores {
+    gap: 10px;
+    padding: 0;
+  }
+
+  .store {
+    width: 140px;
+    max-width: calc(50vw - 20px);
+    height: 60px;
+  }
+
+  .gift {
+    /* height: ; */
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin-bottom: 0;
+    margin-top: -50px;
+  }
+
+  .promocode {
+    top: 35%;
+    font-size: 20px;
+  }
+
+  .about {
+    height: auto;
+    aspect-ratio: 16/9;
+    margin-bottom: -50px;
+    margin-top: -20px;
+  }
+  .about__text {
+    font-size: 300%;
+    line-height: 1;
+  }
+
+  .gameplay__heading {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-top: -80px;
+  }
+
+  .gameplay__slider {
+    margin-top: -50px;
+  }
+
+  .gameplay .swiper-slide {
+    padding: 0;
+  }
+
+  .gameplay .swiper-prev-button,
+  .gameplay .swiper-next-button {
+    width: 50px;
+    height: 50px;
+    top: calc(50% - 25px);
+  }
+
+  .gameplay .swiper-prev-button {
+    left: 0px;
+  }
+  .gameplay .swiper-next-button {
+    right: 0px;
+  }
+
+  .slider-border-bottom-left {
+    display: none;
+  }
+  .slider-border-top-right {
+    display: none;
+  }
+
+  .heroes {
+    margin-top: 0px;
+  }
+
+  .heroes__heading {
+    aspect-ratio: 16/9;
+    height: auto;
+    margin-top: -30px;
+  }
+
+  .heroes__all {
+    aspect-ratio: 16 / 9;
+    margin-top: -100px;
+    margin-bottom: 120px;
+    height: auto;
+  }
+
+  .heroes__text {
+    height: auto;
+    aspect-ratio: 16/9;
+    padding: 0;
+    font-size: 330%;
+    line-height: 1;
+    padding-right: 100px;
+    padding-left: 40px;
+  }
+
+  .end-stores {
+    margin-top: -10px;
+    padding: 0px;
+    padding-bottom: 30px;
+  }
+
+  .footer {
+    font-size: 20px;
+    line-height: 2;
+    padding: 20px;
+  }
+
+  .copied-notice {
+    font-size: 15px;
+  }
 }
 </style>
