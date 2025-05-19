@@ -224,6 +224,11 @@ body {
   background-repeat: no-repeat;
   height: 100rem;
 }
+@media screen and (max-width: 900px) {
+  .cover {
+    margin-bottom: 10rem;
+  }
+}
 
 .title {
   align-self: center;
@@ -248,7 +253,6 @@ body {
 
 .store {
   box-shadow: 0px 0px 10px #4600ac;
-  border-radius: 10px;
   width: calc(3rem * 8);
   height: calc(1rem * 8);
   cursor: pointer;
@@ -256,6 +260,13 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+@media screen and (max-width: 900px) {
+  .store {
+    width: calc(3rem * 16);
+    height: calc(1rem * 16);
+    border-radius: 4px;
+  }
 }
 
 .store_google {
@@ -283,6 +294,11 @@ body {
   background-repeat: no-repeat;
   margin-bottom: 4rem;
 }
+@media screen and (max-width: 900px) {
+  .gift {
+    height: 50rem;
+  }
+}
 
 .promocode {
   position: absolute;
@@ -292,6 +308,12 @@ body {
   margin: auto;
   text-align: center;
   font-size: 5rem;
+}
+@media screen and (max-width: 900px) {
+  .promocode {
+    font-size: 6rem;
+    top: 14rem;
+  }
 }
 
 .promocode-title {
@@ -343,6 +365,12 @@ body {
   color: #4c2e6c;
   font-weight: 400;
   transform: rotate(-3deg);
+}
+@media screen and (max-width: 900px) {
+  .about__text {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
 }
 /* <<< END ABOUT */
 

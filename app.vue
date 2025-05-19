@@ -1,24 +1,24 @@
 <template>
-  <Home />
+  <LandingPage />
 </template>
 
 <script lang="ts" setup>
-import Home from "./src/home.vue";
+import LandingPage from "./src/landing-page.vue";
 
-const setWindowFontSize = function (psdWidth) {
+const setWindowFontSize = function (targetWidth: number) {
   const clientWidth = document.documentElement.clientWidth;
-  console.log("clientWidth: ", clientWidth, "; psdWidth: ", psdWidth);
-  if (clientWidth >= psdWidth) {
+  console.log("clientWidth: ", clientWidth, "; psdWidth: ", targetWidth);
+  if (clientWidth >= targetWidth) {
     document.documentElement.style.fontSize = "10px";
   } else {
     console.log("innerWidth: ", innerWidth);
     document.documentElement.style.fontSize =
-      innerWidth / (psdWidth * 0.08) + "px";
+      innerWidth / (targetWidth * 0.08) + "px";
     window.addEventListener(
       "resize",
       function () {
         document.documentElement.style.fontSize =
-          innerWidth / (psdWidth * 0.08) + "px";
+          innerWidth / (targetWidth * 0.08) + "px";
       },
       false
     );
