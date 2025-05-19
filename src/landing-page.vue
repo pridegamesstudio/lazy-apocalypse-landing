@@ -141,8 +141,11 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-
 import { ref } from "vue";
+
+useHead({
+  title: "Lazy Apocalypse: Tower Defense!",
+});
 
 const code = ref("Lazy1");
 const copied = ref(false);

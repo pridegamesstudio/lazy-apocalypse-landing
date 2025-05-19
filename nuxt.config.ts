@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
-    'vue3-carousel-nuxt'
   ],
 
   css: [
