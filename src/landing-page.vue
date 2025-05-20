@@ -665,4 +665,18 @@ body {
     font-size: 15px;
   }
 }
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .gameplay__slider {
+    width: 50vh;
+  }
+
+  .gameplay .swiper-prev-button {
+    left: -30px;
+  }
+
+  .gameplay .swiper-next-button {
+    right: -30px;
+  }
+}
 </style>
