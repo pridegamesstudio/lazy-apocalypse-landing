@@ -360,22 +360,23 @@ body {
 
 /* >>> START GAMEPLAY */
 .gameplay {
+  margin-bottom: -200px;
 }
 .gameplay__heading {
   background-image: url(./assets/gameplay-title.webp);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 330px;
+  height: 230px;
+  margin-bottom: -200px;
 }
 .gameplay__slider {
   position: relative;
-  width: 90%;
+  width: 50%;
   margin: auto;
 }
 .gameplay__screenshot {
   width: 100%;
-  height: fit-content;
 }
 
 .gameplay .swiper-prev-button,
@@ -421,23 +422,23 @@ body {
 
   .slider-border-bottom-left {
     position: absolute;
-    bottom: -50px;
-    left: -0px;
+    bottom: 200px;
+    left: 40px;
     background-size: contain;
-    width: 500px;
+    width: 300px;
     z-index: 2;
-    height: 500px;
+    height: 300px;
     background-repeat: no-repeat;
     background-image: url(./assets/slider-border-bottom-left.webp);
   }
   .slider-border-top-right {
     position: absolute;
-    top: 120px;
-    right: -200px;
+    top: 200px;
+    right: -150px;
     background-size: contain;
-    width: 400px;
+    width: 300px;
     z-index: 0;
-    height: 400px;
+    height: 300px;
     background-repeat: no-repeat;
     background-image: url(./assets/slider-border-top-right.webp);
   }
@@ -455,7 +456,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   width: 100%;
-  height: 330px;
+  height: 230px;
 }
 .heroes__all {
   margin-top: -180px;
@@ -568,18 +569,28 @@ body {
     margin-top: -20px;
   }
   .about__text {
-    font-size: 300%;
+    font-size: 400%;
     line-height: 1;
+    margin-top: 8%;
   }
 
+  .gameplay {
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
   .gameplay__heading {
     height: auto;
     aspect-ratio: 16 / 9;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: -80px;
+    margin-bottom: 20px;
   }
 
   .gameplay__slider {
     margin-top: -50px;
+    width: auto;
   }
 
   .gameplay .swiper-slide {
@@ -614,7 +625,11 @@ body {
   .heroes__heading {
     aspect-ratio: 16/9;
     height: auto;
-    margin-top: -30px;
+    margin-top: 0px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
   }
 
   .heroes__all {
@@ -628,7 +643,7 @@ body {
     height: auto;
     aspect-ratio: 16/9;
     padding: 0;
-    font-size: 330%;
+    font-size: 500%;
     line-height: 1;
     padding-right: 100px;
     padding-left: 40px;
