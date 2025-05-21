@@ -196,7 +196,7 @@ const isMobile = computed(() =>
 html {
   font-family: "Bungee", Arial, Helvetica, sans-serif;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 2.4px;
   background-color: #161a2b;
   color: #fff;
 }
