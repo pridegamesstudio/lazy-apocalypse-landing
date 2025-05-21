@@ -15,7 +15,7 @@ useHead({
     {
       innerHTML: `
         window.AF_SMART_SCRIPT.generateOneLinkURL({
-          oneLinkURL: 'https://yourbrand.onelink.me/ABC123',
+          oneLinkURL: 'https://lazyapocalypse.onelink.me/qdQu',
           afParameters: {
             mediaSource: {
               keys: ['utm_source', 'af_media_source'],
