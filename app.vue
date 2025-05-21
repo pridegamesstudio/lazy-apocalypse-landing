@@ -15,19 +15,35 @@ useHead({
     },
     {
       innerHTML: `
-        window.AF_SMART_SCRIPT.generateOneLinkURL({
-          oneLinkURL: '${settings.oneLinkURL}',
-          afParameters: {
-            mediaSource: {
-              keys: ['utm_source', 'af_media_source'],
-              defaultValue: 'website'
-            },
-            campaign: {
-              keys: ['utm_campaign'],
-              defaultValue: 'default_campaign'
-            }
-          }
-        });
+        const setupOneLink = () => {
+          if (window.AF_SMART_SCRIPT?.generateOneLinkURL) {
+            window.AF_SMART_SCRIPT.generateOneLinkURL({
+              oneLinkURL: '${settings.oneLinkURL}',
+              afParameters: {
+                mediaSource: {
+                  keys: ['utm_source', 'af_media_source'],
+                  defaultValue: 'website'
+                },
+                campaign: {
+                  keys: ['utm_campaign'],
+                  defaultValue: 'default_campaign'
+                },
+                adSet: {
+                  keys: ['utm_content', 'af_adset'],
+                  defaultValue: 'general'
+                }, // Группа объявлений
+                ad: {
+                  keys: ['utm_term', 'af_ad'],
+                  defaultValue: 'none'
+                }, // Ключевое слово/креатив }
+              }
+            });
+          } else {
+            setTimeout(waitForAF, 500)
+          };
+        };
+
+        setupOneLink();
       `,
       type: "text/javascript",
     },
