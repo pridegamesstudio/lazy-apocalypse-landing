@@ -35,7 +35,7 @@ useHead({
                 ad: {
                   keys: ['utm_term', 'af_ad'],
                   defaultValue: 'none'
-                }, // Ключевое слово/креатив }
+                }, // Ключевое слово/креатив
               }
             });
           } else {
