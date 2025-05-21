@@ -8,6 +8,22 @@ import { settings } from "./src/settings";
 
 useHead({
   script: [
+    // GOOGLE
+    {
+      src: "https://www.googletagmanager.com/gtag/js?id=AW-17028356516",
+      async: true,
+    },
+    {
+      innerHTML: `
+        <!-- Google tag (gtag.js) -->
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17028356516');
+      `,
+    },
+
     // APPSFLYER
     {
       src: "https://onelinksmartscript.appsflyer.com/onelink-smart-script-latest.js",
