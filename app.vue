@@ -4,6 +4,7 @@
 
 <script lang="ts" setup>
 import LandingPage from "./src/landing-page.vue";
+import { settings } from "./src/settings";
 
 useHead({
   script: [
@@ -15,7 +16,7 @@ useHead({
     {
       innerHTML: `
         window.AF_SMART_SCRIPT.generateOneLinkURL({
-          oneLinkURL: 'https://lazyapocalypse.onelink.me/qdQu',
+          oneLinkURL: '${settings.oneLinkURL}',
           afParameters: {
             mediaSource: {
               keys: ['utm_source', 'af_media_source'],

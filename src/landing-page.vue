@@ -8,12 +8,12 @@
       <div class="stores">
         <a
           class="store store_apple"
-          href="https://apps.apple.com/us/app/lazy-apocalypse-tower-defense/id6742743519"
+          :href="settings.oneLinkURL"
           target="_blank"
         />
         <a
           class="store store_google"
-          href="https://play.google.com/store/apps/details?id=com.ZombieIdleDefenseChair&hl=en&gl=US"
+          :href="settings.oneLinkURL"
           target="_blank"
         />
       </div>
@@ -111,12 +111,12 @@
       <div class="stores">
         <a
           class="store store_apple"
-          href="https://apps.apple.com/us/app/lazy-apocalypse-tower-defense/id6742743519"
+          :href="settings.oneLinkURL"
           target="_blank"
         />
         <a
           class="store store_google"
-          href="https://play.google.com/store/apps/details?id=com.ZombieIdleDefenseChair&hl=en&gl=US"
+          :href="settings.oneLinkURL"
           target="_blank"
         />
       </div>
@@ -142,6 +142,7 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { ref } from "vue";
+import { settings } from "./settings";
 
 useHead({
   title: "Lazy Apocalypse: Tower Defense!",
