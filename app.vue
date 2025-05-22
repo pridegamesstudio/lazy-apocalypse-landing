@@ -33,27 +33,42 @@ useHead({
       innerHTML: `
         const setupOneLink = () => {
           if (window.AF_SMART_SCRIPT?.generateOneLinkURL) {
-            window.AF_SMART_SCRIPT.generateOneLinkURL({
-              oneLinkURL: '${settings.oneLinkURL}',
-              afParameters: {
-                mediaSource: {
-                  keys: ['utm_source', 'af_media_source'],
-                  defaultValue: 'website'
-                },
-                campaign: {
-                  keys: ['utm_campaign'],
-                  defaultValue: 'default_campaign'
-                },
-                adSet: {
-                  keys: ['utm_content', 'af_adset'],
-                  defaultValue: 'general'
-                }, // Группа объявлений
-                ad: {
-                  keys: ['utm_term', 'af_ad'],
-                  defaultValue: 'none'
-                }, // Ключевое слово/креатив
-              }
+            var oneLinkURL = "${settings.oneLinkURL}";
+            var webReferrer = "af_sub3";
+            var mediaSource = {keys:["utm_source"],defaultValue:"any_source"};
+            var campaign = {keys:["utm_campaign"],defaultValue:"any_campaign_name"};
+            var adSet = {keys:["utm_adset"],defaultValue:"any_ad_name"};
+            var ad = {keys:["utm_ad"],defaultValue:"any_ad_name"};
+            var channel = {keys:["utm_medium"],defaultValue:"any_channel_name"};
+            var googleClickIdKey = "af_sub1";
+            var afSub2 = {keys:["fbclid"]};
+            var custom_ss_ui = {paramKey:"af_ss_ui",defaultValue:"true"};
+
+            //Call the function after embedding the code through a global parameter on the window object called window.AF_SMART_SCRIPT.
+            //Onelink URL is generated.
+            var result = window.AF_SMART_SCRIPT.generateOneLinkURL({
+                oneLinkURL: oneLinkURL,
+                webReferrer: webReferrer,
+                afParameters: {
+                    mediaSource: mediaSource,
+                    campaign: campaign,
+                    adSet: adSet,
+                    ad: ad,
+                    channel: channel,
+                    googleClickIdKey: googleClickIdKey,
+                    afSub2: afSub2,
+                    afCustom: [
+                        custom_ss_ui
+                    ]
+                }
             });
+
+
+            // If needed, you can download the script from: https://onelinksmartscript.appsflyer.com/onelink-smart-script-latest.js
+
+            // See an example of implementation and how to place the URL result behind a CTA on your website: https://appsflyersdk.github.io/appsflyer-onelink-smart-script/examples/utm_parameters.html?utm_campaign=mycmpn&utm_source=mysource
+
+            // See an example of how to display a QR code: https://appsflyersdk.github.io/appsflyer-onelink-smart-script/examples/qr_code.html?inmedia=my_email&incmp=my_campaign
           } else {
             setTimeout(waitForAF, 500)
           };
