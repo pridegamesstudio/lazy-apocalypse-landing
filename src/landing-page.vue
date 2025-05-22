@@ -6,16 +6,8 @@
       <div class="title" />
 
       <div class="stores">
-        <a
-          class="store store_apple"
-          :href="settings.oneLinkURL"
-          target="_blank"
-        />
-        <a
-          class="store store_google"
-          :href="settings.oneLinkURL"
-          target="_blank"
-        />
+        <a class="store store_apple" :href="oneLinkURL" target="_blank" />
+        <a class="store store_google" :href="oneLinkURL" target="_blank" />
       </div>
     </div>
 
@@ -109,16 +101,8 @@
 
     <div class="end-stores">
       <div class="stores">
-        <a
-          class="store store_apple"
-          :href="settings.oneLinkURL"
-          target="_blank"
-        />
-        <a
-          class="store store_google"
-          :href="settings.oneLinkURL"
-          target="_blank"
-        />
+        <a class="store store_apple" :href="oneLinkURL" target="_blank" />
+        <a class="store store_google" :href="oneLinkURL" target="_blank" />
       </div>
     </div>
   </div>
@@ -184,6 +168,54 @@ const isMobile = computed(() =>
     userAgent
   )
 );
+
+const setupOneLink = () => {
+  if (window.AF_SMART_SCRIPT?.generateOneLinkURL) {
+    const oneLinkURL = `${settings.oneLinkURL}`;
+    const webReferrer = "af_sub3";
+    const mediaSource = { keys: ["utm_source"], defaultValue: "any_source" };
+    const campaign = {
+      keys: ["utm_campaign"],
+      defaultValue: "any_campaign_name",
+    };
+    const adSet = { keys: ["utm_adset"], defaultValue: "any_ad_name" };
+    const ad = { keys: ["utm_ad"], defaultValue: "any_ad_name" };
+    const channel = { keys: ["utm_medium"], defaultValue: "any_channel_name" };
+    const googleClickIdKey = "af_sub1";
+    const afSub2 = { keys: ["fbclid"] };
+    const custom_ss_ui = { paramKey: "af_ss_ui", defaultValue: "true" };
+
+    //Call the function after embedding the code through a global parameter on the window object called window.AF_SMART_SCRIPT.
+    //Onelink URL is generated.
+    return window.AF_SMART_SCRIPT?.generateOneLinkURL({
+      oneLinkURL: oneLinkURL,
+      webReferrer: webReferrer,
+      afParameters: {
+        mediaSource: mediaSource,
+        campaign: campaign,
+        adSet: adSet,
+        ad: ad,
+        channel: channel,
+        googleClickIdKey: googleClickIdKey,
+        afSub2: afSub2,
+        afCustom: [custom_ss_ui],
+      },
+    })?.clickURL;
+
+    // If needed, you can download the script from: https://onelinksmartscript.appsflyer.com/onelink-smart-script-latest.js
+
+    // See an example of implementation and how to place the URL result behind a CTA on your website: https://appsflyersdk.github.io/appsflyer-onelink-smart-script/examples/utm_parameters.html?utm_campaign=mycmpn&utm_source=mysource
+
+    // See an example of how to display a QR code: https://appsflyersdk.github.io/appsflyer-onelink-smart-script/examples/qr_code.html?inmedia=my_email&incmp=my_campaign
+  } else {
+    setTimeout(setupOneLink, 500);
+  }
+};
+
+const oneLinkURL = ref("");
+onMounted(() => {
+  oneLinkURL.value = setupOneLink();
+});
 </script>
 
 <style>
