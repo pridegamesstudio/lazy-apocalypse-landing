@@ -70,7 +70,7 @@ useHead({
 
             // See an example of how to display a QR code: https://appsflyersdk.github.io/appsflyer-onelink-smart-script/examples/qr_code.html?inmedia=my_email&incmp=my_campaign
           } else {
-            setTimeout(waitForAF, 500)
+            setTimeout(setupOneLink, 500)
           };
         };
 
